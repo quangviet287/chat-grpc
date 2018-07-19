@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import validation.RequiredField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +23,7 @@ public class ChatViewController implements Initializable {
 
     @FXML private ListView listView;
 
-    @FXML private TextField message = new TextField();
+    @FXML public RequiredField requiredField1 = new RequiredField();
 
     @FXML private TextField name = new TextField("name");
 
@@ -56,12 +57,13 @@ public class ChatViewController implements Initializable {
     });
 
     public void sent(ActionEvent actionEvent) {
-        if (name.getText().equals("") || message.getText().equals("")) {
-            error.setText("Name or Message must not empty!");
-            return;
-        }
-        chat.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage(message.getText()).build());
-        message.setText("");
+//        if (name.getText().equals("") || message.getText().equals("")) {
+//            error.setText("Name or Message must not empty!");
+//            return;
+//        }
+        requiredField1.eval();
+        chat.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage(requiredField1.getText()).build());
+        requiredField1.setText("");
         error.setVisible(false);
 
     }
