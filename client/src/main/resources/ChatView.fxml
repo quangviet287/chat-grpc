@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="chat.ChatViewController"
+            prefHeight="400.0" prefWidth="600.0"
+            styleClass="chatView"
+            stylesheets="@styleChatView.css">
+
+    <top>
+        <Label id="label" text="Chat now !!!!" BorderPane.alignment="CENTER" />
+    </top>
+    <center>
+        <ListView id="listView" fx:id="listView"/>
+    </center>
+
+    <bottom>
+        <VBox alignment="BOTTOM_LEFT" id="vBox" spacing="10.0" >
+            <HBox id="hBox">
+                <TextField id="userName" fx:id="name" prefWidth="90" promptText="User Name"/>
+                <TextField id="message" fx:id="message" prefWidth="350" promptText="Message"/>
+                <Button onAction="#sent" text="Sent"/>
+            </HBox>
+            <Label id="error" fx:id="error"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>

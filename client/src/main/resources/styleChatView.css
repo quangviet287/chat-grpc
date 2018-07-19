@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Merienda');
+
+.root {
+    -fx-background-image: url("background.jpg");
+    -fx-background-size: auto;
+    -fx-font-family: "Merienda";
+}
+
+.button:hover {
+    -fx-background-color: #ff433d;
+}
+
+#label {
+    -fx-font-size: 50px;
+    -fx-text-fill: red;
+
+}
+
+#error {
+    -fx-text-fill: red;
+}
+
+#vBox {
+    -fx-padding: 10px;
+    -fx-background-color: #a5ab88;
+}
+
+#hBox {
+    -fx-start-margin: 10px;
+    -fx-end-margin: 10px;
+}
+
+@font-face {
+    font-family: 'Merienda';
+    font-style: normal;
+    font-weight: normal;
+}
