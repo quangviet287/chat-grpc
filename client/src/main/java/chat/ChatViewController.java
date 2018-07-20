@@ -23,15 +23,19 @@ public class ChatViewController implements Initializable {
 
     @FXML private ListView listView;
 
-    @FXML public RequiredField requiredField1 = new RequiredField();
+    @FXML public RequiredField requiredFieldUsername = new RequiredField();
 
-    @FXML private TextField name = new TextField("name");
+    @FXML private RequiredField requiredFieldMessage = new RequiredField();
+
+    @FXML private TextField message = new TextField();
+
+    @FXML private TextField name = new TextField();
 
     @FXML private Label error = new Label();
 
     private ObservableList<String> chatMessages = FXCollections.observableArrayList();
 
-    private ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8888).usePlaintext().build();
+    private ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext().build();
     private ChatServiceGrpc.ChatServiceStub chatService = ChatServiceGrpc.newStub(channel);
     private StreamObserver<Chat.ChatMessage> chat = chatService.chat(new StreamObserver<Chat.ChatMessageFromServer>() {
         @Override
@@ -61,10 +65,11 @@ public class ChatViewController implements Initializable {
 //            error.setText("Name or Message must not empty!");
 //            return;
 //        }
-        requiredField1.eval();
-        chat.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage(requiredField1.getText()).build());
-        requiredField1.setText("");
-        error.setVisible(false);
+        requiredFieldUsername.eval();
+        requiredFieldMessage.eval();
+        chat.onNext(Chat.ChatMessage.newBuilder().setFrom(name.getText()).setMessage(message.getText()).build());
+        message.setText("");
+//        error.setVisible(false);
 
     }
 

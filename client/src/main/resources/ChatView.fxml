@@ -23,25 +23,35 @@
     <bottom>
         <VBox alignment="BOTTOM_LEFT" id="vBox" spacing="10.0" >
             <HBox id="hBox">
-                <TextField id="userName"  prefWidth="90" promptText="User Name"/>
+                <TextField fx:id="name" id="userName"  prefWidth="90" promptText="User Name"/>
                 <TextField fx:id="message" id="message" prefWidth="350" promptText="Message"/>
                 <Button onAction="#sent" text="Sent"/>
             </HBox>
-            <Label id="error" fx:id="error"/>
+            <!--<Label id="error" fx:id="error"/>-->
+            <fx:define>
+                <RequiredField fx:id="requiredFieldUsername">
+                    <srcControl>
+                        <fx:reference source="name"/>
+                    </srcControl>
+                </RequiredField>
+                <RequiredField fx:id="requiredFieldMessage">
+                    <srcControl>
+                        <fx:reference source="message"/>
+                    </srcControl>
+                </RequiredField>
+            </fx:define>
+            <ErrorLabel message="UserName must not empty!">
+                <validator>
+                    <fx:reference source="requiredFieldUsername"/>
+                </validator>
+            </ErrorLabel>
+            <ErrorLabel message="Message must not empty!">
+                <validator>
+                    <fx:reference source="requiredFieldMessage"/>
+                </validator>
+            </ErrorLabel>
         </VBox>
 
-        <fx:define>
-            <RequiredField fx:id="requiredField1">
-                <srcControl>
-                    <fx:reference source="message"></fx:reference>
-                </srcControl>
-            </RequiredField>
-        </fx:define>
-        <ErrorLabel message="UserName must not empty!">
-            <validator>
-                <fx:reference source="requiredField1"></fx:reference>
-            </validator>
-        </ErrorLabel>
     </bottom>
 
 </BorderPane>
